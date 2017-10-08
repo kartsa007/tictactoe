@@ -12,7 +12,7 @@ This is very simple and enjoyable game by letting you to win
 almost every time. By following the installation instructions
 you get started with the game.
 
-##Installation
+## Installation
 
 You need git and npm for the installation and node to run the game.
 
