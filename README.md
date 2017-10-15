@@ -1,7 +1,7 @@
 # tictactoe
 
 Tictactoe game with a very simple artificial intelligence (ai).
-The second version of ai tries to find best by looking ahead a few
+The second version of ai tries to find the best choice by looking ahead a few
 moves.
 
 This game is a
