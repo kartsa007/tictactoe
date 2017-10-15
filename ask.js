@@ -5,7 +5,7 @@
 
   function Ask(question, reExp, errMsg) {
     let success = false
-    let value = ""
+    let value = ''
     do {
       value = readline.question(question)
       if (value.length) {
@@ -14,8 +14,6 @@
         } else {
           console.log(errMsg)
         }
-      } else {
-        success = true
       }      
     } while (success !== true)
     return value

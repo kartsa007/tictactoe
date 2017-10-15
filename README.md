@@ -1,15 +1,17 @@
 # tictactoe
 
 Tictactoe game with a very simple artificial intelligence (ai).
-The first version of ai only selects randomly it's move.
+The second version of ai tries to find best by looking ahead a few
+moves.
+
 This game is a
-home work of the FronEndMaster-course organised by
+home exercise of the FrontEndMaster-course organised by
 Tampereen ammattikorkeakoulu (Tamk) & Te-keskus & Opteam.
 
 ## Getting started
 
-This is very simple and enjoyable game by letting you to win
-almost every time. By following the installation instructions
+This is very simple and enjoyable game by giving you some resistance
+at least with small boards. By following the installation instructions
 you get started with the game.
 
 ## Installation

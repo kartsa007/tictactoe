@@ -16,16 +16,18 @@ function askPlayerName() {
 }
 
 function askBoardSize() {
-  return ask('Give board size (columns,rows)',
-             reSize,
-             'Check your input format, it is not right')
+  return ask(
+    'Give board size (columns,rows)',
+    reSize,
+    'Check your input format, it is not right')
  
 }
 
 function askToWin() {
-  return ask('Give winning straight length (3-5)',
-             reToWin,
-             '3 - 5')
+  return ask(
+    'Give winning straight length (3-5)',
+    reToWin,
+    '3 - 5')
  
 }
 function initGame() {
@@ -59,19 +61,19 @@ function Game() {
 
   this.init = initGame
   this.init()
-  this.colCnt = 5
-  this.rowCnt = 5
-  this.toWin = 3
-  this.name = []
-  this.name[0] = 'Kari'
-  this.name[1] = 'computer'
+  //this.colCnt = 5
+  //this.rowCnt = 5
+  //this.toWin = 3
+  //this.name = []
+  //this.name[0] = 'Kari'
+  //this.name[1] = 'computer'
   
   this.tictactoe = new TicTacToe(this.colCnt, this.rowCnt, this.toWin)
   this.player = []
   this.stopwatch =[]
   for (let i = 0; i < 2; i++) {
     if (this.name[i] == 'computer') {
-      this.player[i] = new Computer(this.tictactoe, './ai.js')
+      this.player[i] = new Computer(this.tictactoe, './ai2.js')
     } else {
       this.player[i] = new Human(this.name[i], this.tictactoe, view)
     }
@@ -103,8 +105,14 @@ function Game() {
         console.log('Game End')
         break
       }
+      if (typeof response.result != 'undefined' &&
+        response.result == 'draw') {
+        console.log('Game End')
+        break
+      }
+
       index = (index + 1) % 2
-      console.log(response)
+      //console.log(response)
     } while(response.ok == true)
     delete(response.ok)
     delete(response.winninPosition)

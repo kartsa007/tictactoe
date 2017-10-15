@@ -8,7 +8,7 @@ function Human(name, tictactoe, view) {
     let response
     do {
       //Move format: column,row
-      let answer = view.askMove()      
+      let answer = view.askMove(this.name)      
       let values = answer.split(',')
       let column = +values[0]
       let row = +values[1]

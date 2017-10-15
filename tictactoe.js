@@ -11,11 +11,6 @@ function updateSquare() {
   console.log('I am not defined yet (updateSquare)')
 }
 
-function moveToDownDirection(position, direction) {
-  return {'row': position.row - direction.row,
-          'column': position.column - direction.column}
-}
-
 function winOnDirection(currentPosition, direction, tictactoe) {
   let status = false
   let position = currentPosition
@@ -32,14 +27,6 @@ function winOnDirection(currentPosition, direction, tictactoe) {
     }
     startPoint = position
   }
-  /*
-  console.log('top direction')
-  console.log('value ' + currentValue)
-  console.log('direction ' + direction.row + ' ' + direction.column)
-  console.log('currentPosition ' + currentPosition.row + ' ' +
-  currentPosition.column) 
-  console.log('startPoint ' + startPoint.row + ' ' + startPoint.column)
-  */
   for (let len = 1; len <= tictactoe.toWin; len++) {
     position = Position.moveToUpDirection(position, direction)
     if (!Position.onBoard(position, tictactoe)) {
@@ -50,45 +37,12 @@ function winOnDirection(currentPosition, direction, tictactoe) {
     }
     endPoint = position
   }
-  /*
-  console.log('down direction')
-  console.log('direction ' + direction.row + ' ' + direction.column)
-  console.log('currentPosition ' + currentPosition.row + ' ' +
-  currentPosition.column) 
-  console.log('endPoint ' + endPoint.row + ' ' + endPoint.column)
-  console.log()
-*/
   /* How many choices we have to check
      if checkCnt zero or negative none
  */
   let distance = Position.distance(startPoint, endPoint)
   
   return (distance + 1 >= tictactoe.toWin)
-  /*
-  console.log('checkCnt ' + checkCnt)
-  console.log(Position.distance(startPoint, endPoint))
-  console.log(tictactoe.toWin)
-  */
-  for (let i = 0;  i < checkCnt; i++) {
-    let value = 0
-    position = startPoint
-    for (let i = 0; i < tictactoe.toWin; i++) {
-      value += Position.valueOfPosition(position, tictactoe.board)
-      position = moveToDownDirection(position, direction)
-    }
-    /*
-    console.log('winOnDirection')
-    console.log('startPoint ' + startPoint.row + ' ' + startPoint.column)
-    console.log(startPoint)
-    console.log(value)
-    */
-    if (Math.abs(value) == tictactoe.toWin) {
-      status = true
-      break
-    }
-    startPoint = moveToDownDirection(startPoint, direction)
-  }
-  return status
 }
 
 function winningPosition(row, column, tictactoe) {
@@ -105,8 +59,9 @@ function winningPosition(row, column, tictactoe) {
 
 function TicTacToe(rows, columns, towin) {
   var board = []
-  this.view = {'updateBoard': updateBoard,
-              'updateSquare': updateSquare}
+  this.view = {
+    'updateBoard': updateBoard,
+    'updateSquare': updateSquare}
   
   this.rows = rows
   this.columns = columns
@@ -136,11 +91,12 @@ function TicTacToe(rows, columns, towin) {
   }
   
   this.move = function(row, column, value) {
-    let response = {'ok': true,
-                    'value': value,
-                    'row': row,
-                    'column': column,
-                    'isWinningPosition': false}
+    let response = {
+      'ok': true,
+      'value': value,
+      'row': row,
+      'column': column,
+      'isWinningPosition': false}
 
     if (row >= this.rows) {
       response.ok = false
@@ -157,6 +113,8 @@ function TicTacToe(rows, columns, towin) {
       this.moveCnt++
       if (winningPosition(row, column, this)) {
         response.isWinningPosition = true
+      } else if (this.moveCnt == this.totalCnt) {
+        response.result = 'draw'
       }
       this.history.push(response)
     } else {

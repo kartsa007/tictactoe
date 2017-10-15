@@ -26,8 +26,9 @@ function Ai(computer) {
       }
       rowInd++
     }
-    return {row: rowInd,
-            column: colInd}
+    return {
+      row: rowInd,
+      column: colInd}
   }
 }
 

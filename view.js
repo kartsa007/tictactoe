@@ -3,7 +3,7 @@
 let ask = require('./ask.js').ask
 const reMove = new RegExp('^[0-9]{1,2},[0-9]{1,2}$')
 
-var sprintf = require("sprintf-js").sprintf
+var sprintf = require('sprintf-js').sprintf
 
 function brdHdr(columns, offsetStr) {
   let str = ''
@@ -49,12 +49,13 @@ function hdata(row) {
 function drawBoard(board) {
   let rows = board.length
   let columns = board[0].length
-  let offset = String(rows).length
+  let offset = String(rows - 1).length
   let hrOffset = '  '.slice(0, offset)
   let str = brdHdr(columns, hrOffset)
   str += hrOffset + hr(columns)
+  let format = '%' + offset + 'd'
   for (let i = 0; i < rows; i++) {
-    str += sprintf('%d', i) + hdata(board[i])
+    str += sprintf(format, i) + hdata(board[i])
     str += hrOffset + hr(columns)
   }
   console.log(str)
@@ -70,10 +71,11 @@ function drawSquare(square) {
   return ' '
 }
 
-function askMove() {
-  return ask('Your move (column,row)',
-             reMove,
-             'Check your input format, it is not right')
+function askMove(name) {
+  return ask(
+    `Your move ${name}(column,row): `,
+    reMove,
+    'Check your input format, it is not right')
 }
 
 let view = {
